@@ -3,6 +3,7 @@ package net.worlddownloader.mixins;
 import net.minecraft.client.MinecraftApplet;
 import net.minecraft.client.level.ClientLevel;
 import net.minecraft.level.Level;
+import net.minecraft.level.LevelProperties;
 import net.minecraft.level.chunk.Chunk;
 import net.minecraft.level.chunk.ChunkIO;
 import net.minecraft.level.dimension.Nether;

@@ -1,7 +1,9 @@
 package net.worlddownloader;
 
 import net.minecraft.client.level.ClientLevel;
+import net.minecraft.level.LevelProperties;
 import net.minecraft.level.chunk.ChunkIO;
+import net.minecraft.level.chunk.MultiplayerChunkCache;
 import net.minecraft.level.dimension.DimensionFile;
 import net.minecraft.packet.Id15Packet;
 import net.minecraft.tileentity.TileEntityBase;
@@ -18,5 +20,6 @@ public interface ClientLevelInterface {
     public boolean isDownloadThisWorld();
     public ChunkIO getDownloadChunkLoader();
     public DimensionFile getDownloadSaveHandler();
+    public MultiplayerChunkCache getChunkCacheS();
     public Id15Packet getOpenContainerPacket();
 }

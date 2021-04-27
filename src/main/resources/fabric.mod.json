@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "worlddownloader",
-  "version": "${version}",
+  "version": "1.0",
 
   "name": "World Downloader",
-  "description": "This was originally a MCP mod but now its fabric :D! Original source: https://github.com/dslake/WorldDownloader",
+  "description": "This was originally a MCP mod but now its fabric :D!",
   "authors": [
     "@You???#1844"
   ],

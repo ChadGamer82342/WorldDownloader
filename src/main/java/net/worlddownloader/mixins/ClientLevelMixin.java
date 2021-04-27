@@ -5,6 +5,7 @@ import net.minecraft.client.level.ClientLevel;
 import net.minecraft.level.Level;
 import net.minecraft.level.chunk.Chunk;
 import net.minecraft.level.chunk.ChunkIO;
+import net.minecraft.level.chunk.MultiplayerChunkCache;
 import net.minecraft.level.dimension.Dimension;
 import net.minecraft.level.dimension.DimensionData;
 import net.minecraft.level.dimension.DimensionFile;
@@ -17,12 +18,14 @@ import net.worlddownloader.ClientLevelInterface;
 import net.worlddownloader.ClientLevelS;
 import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.util.ProgressListener;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientLevel.class)
 public class ClientLevelMixin extends Level implements ClientLevelInterface {
+    @Shadow private MultiplayerChunkCache field_1724;
     public boolean downloadThisWorld = false;
     public ChunkIO downloadChunkLoader;
     public DimensionFile downloadSaveHandler;
@@ -33,7 +36,6 @@ public class ClientLevelMixin extends Level implements ClientLevelInterface {
     @Inject(at = @At("RETURN"), method = "Lnet/minecraft/client/level/ClientLevel;<init>(Lnet/minecraft/network/ClientPlayNetworkHandler;JI)V")
     public void init(ClientPlayNetworkHandler arg, long l, int i, CallbackInfo ci){
         ClientLevelS.clientLevel = (ClientLevel)(Level)this;
-        System.out.println("TEST!");
     }
 
     public void saveWorld(boolean flag, ProgressListener iprogressupdate) {
@@ -84,7 +86,7 @@ public class ClientLevelMixin extends Level implements ClientLevelInterface {
 
     @Override
     public void setDownloadSaveHandler(DimensionFile downloadSaveHandler) {
-
+        this.downloadSaveHandler = downloadSaveHandler;
     }
 
     @Override
@@ -105,6 +107,11 @@ public class ClientLevelMixin extends Level implements ClientLevelInterface {
     @Override
     public DimensionFile getDownloadSaveHandler() {
         return this.downloadSaveHandler;
+    }
+
+    @Override
+    public MultiplayerChunkCache getChunkCacheS() {
+        return this.field_1724;
     }
 
     @Override
